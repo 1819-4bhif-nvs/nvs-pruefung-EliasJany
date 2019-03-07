@@ -23,31 +23,25 @@ public class InitBean {
 
     @PostConstruct
     public void init(){
+        List<Surname> surnames = new ArrayList<>();
 
-        List<Surname> maennlich = new ArrayList<>();
         new BufferedReader(new InputStreamReader(this.getClass()
                 .getResourceAsStream("maennlich.csv"), Charset.defaultCharset()))
                 .lines()
                 .skip(1)
                 .map(a -> new Surname(a,"Maennlich"))
-                .forEach(a -> maennlich.add(a));
+                .forEach(a -> surnames.add(a));
 
-        List<Surname> weiblich = new ArrayList<>();
         new BufferedReader(new InputStreamReader(this.getClass()
                 .getResourceAsStream("weiblich.csv"), Charset.defaultCharset()))
                 .lines()
                 .skip(1)
                 .map(a -> new Surname(a,"Weiblich"))
-                .forEach(a -> weiblich.add(a));
+                .forEach(a -> surnames.add(a));
 
-        for (Surname s:maennlich) {
+        for (Surname s:surnames) {
             System.out.println(s.ID+" "+s.Firstname+" "+s.Gender);
-            //em.persist(s);
-        }
-
-        for (Surname s:weiblich) {
-            System.out.println(s.ID+" "+s.Firstname+" "+s.Gender);
-            //em.persist(s);
+            em.persist(s);
         }
     }
 }

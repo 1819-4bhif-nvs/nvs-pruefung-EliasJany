@@ -54,8 +54,9 @@ public class SurnameEndpoint {
 
     @Path("new")
     @POST
-    public void newSurname(){
-
+    public void newSurname(Surname s){
+        em.persist(s);
+        em.flush();
     }
 
     @Path("delete/{id}")
@@ -67,7 +68,10 @@ public class SurnameEndpoint {
 
     @Path("update/{id}")
     @PUT
-    public void updateSurname(){
-
+    public void updateSurname(@PathParam(("id"))long id, Surname s){
+        Surname surname = em.find(Surname.class,id);
+        surname.setFirstname(s.getFirstname());
+        surname.setGender(s.getGender());
+        em.merge(surname);
     }
 }

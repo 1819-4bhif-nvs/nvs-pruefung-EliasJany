@@ -18,7 +18,6 @@ import java.util.List;
 @Startup
 @Singleton
 public class InitBean {
-
     @Inject
     EntityManager em;
 

@@ -7,7 +7,6 @@ import javax.persistence.*;
         @NamedQuery(name = "Surname.all", query = "select s FROM Surname s")
 })
 public class Surname {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int ID;

@@ -11,7 +11,6 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 public class SurnameEndpoint {
-
     @PersistenceContext
     EntityManager em;
 
@@ -35,7 +34,6 @@ public class SurnameEndpoint {
     @Path("histogramm")
     @GET
     public Response histogramm(){
-
         return null;
     }
 
@@ -62,5 +60,4 @@ public class SurnameEndpoint {
     public Response updateSurname(){
         return null;
     }
-
 }

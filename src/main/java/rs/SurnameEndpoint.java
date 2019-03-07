@@ -6,6 +6,7 @@ import model.Surname;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -21,7 +22,7 @@ public class SurnameEndpoint {
         int peopleCount = 0;
         int maleCount = 0;
         int femaleCount = 0;
-        List<Surname> surnames =  em.createNamedQuery("Surname.all", Surname.class).getResultList();
+        List<Surname> surnames =  em.createNamedQuery("Surname.getAll", Surname.class).getResultList();
 
         peopleCount = surnames.size() - 1;
         for(Surname s : surnames)
@@ -32,7 +33,7 @@ public class SurnameEndpoint {
                 femaleCount++;
         }
 
-        return "{ total_all : "+ peopleCount+", total_male"+ maleCount +", total_female"+ femaleCount +"}";
+        return "total_all : "+ peopleCount+", total_male"+ maleCount +", total_female"+ femaleCount;
     }
 
     @Path("histogramm")
@@ -43,25 +44,27 @@ public class SurnameEndpoint {
 
     @Path("find/{id}")
     @GET
-    public Response findSurname(){
-        return null;
+    public Surname findSurname(@PathParam(("id"))long id){
+        Surname result = em.createNamedQuery("Surname.findById",Surname.class).setParameter("ID",id).getSingleResult();
+        return result;
     }
 
     @Path("new")
     @POST
-    public Response newSurname(){
-        return null;
+    public void newSurname(){
+
     }
 
     @Path("delete/{id}")
     @DELETE
-    public Response deleteSurname(){
-        return null;
+    public void deleteSurname(@PathParam(("id"))long id){
+        Surname s = em.createNamedQuery("Surname.findById",Surname.class).setParameter("ID",id).getSingleResult();
+        em.remove(s);
     }
 
     @Path("update/{id}")
     @PUT
-    public Response updateSurname(){
-        return null;
+    public void updateSurname(){
+
     }
 }

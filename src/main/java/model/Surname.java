@@ -4,7 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Surname.all", query = "select s FROM Surname s")
+        @NamedQuery(name = "Surname.getAll", query = "select s FROM Surname s"),
+        @NamedQuery(name = "Surname.findById",query = "select s from Surname s where s.Id=:ID")
 })
 public class Surname {
     @Id

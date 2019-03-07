@@ -9,10 +9,12 @@ public class Surname {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int ID;
 
-    public String Gender;
+    @Column
+    public Gender Gender;
+    @Column
     public String Firstname;
 
-    public Surname(String firstname, String gender) {
+    public Surname(String firstname, Gender gender) {
         Gender = gender;
         Firstname = firstname;
     }
@@ -21,11 +23,11 @@ public class Surname {
         return ID;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return Gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         Gender = gender;
     }
 

@@ -18,6 +18,7 @@ public class SurnameEndpoint {
     @Path("histogramm")
     @GET
     public Response histogramm(){
+
         return null;
     }
 

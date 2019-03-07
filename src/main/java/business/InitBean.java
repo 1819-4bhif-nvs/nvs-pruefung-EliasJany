@@ -1,5 +1,6 @@
 package business;
 
+import model.Gender;
 import model.Surname;
 
 import javax.annotation.PostConstruct;
@@ -29,14 +30,14 @@ public class InitBean {
                 .getResourceAsStream("maennlich.csv"), Charset.defaultCharset()))
                 .lines()
                 .skip(1)
-                .map(a -> new Surname(a,"Maennlich"))
+                .map(a -> new Surname(a, Gender.Maennlich))
                 .forEach(a -> surnames.add(a));
 
         new BufferedReader(new InputStreamReader(this.getClass()
                 .getResourceAsStream("weiblich.csv"), Charset.defaultCharset()))
                 .lines()
                 .skip(1)
-                .map(a -> new Surname(a,"Weiblich"))
+                .map(a -> new Surname(a,Gender.Weiblich))
                 .forEach(a -> surnames.add(a));
 
         for (Surname s:surnames) {

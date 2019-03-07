@@ -18,8 +18,11 @@ public class SurnameEndpoint {
     @Produces("application/json")
     public String surname()
     {
-        int peopleCount,maleCount = 0,femaleCount = 0;
+        int peopleCount = 0;
+        int maleCount = 0;
+        int femaleCount = 0;
         List<Surname> surnames =  em.createNamedQuery("Surname.all", Surname.class).getResultList();
+
         peopleCount = surnames.size() - 1;
         for(Surname s : surnames)
         {
@@ -28,6 +31,7 @@ public class SurnameEndpoint {
             else
                 femaleCount++;
         }
+
         return "{ total_all : "+ peopleCount+", total_male"+ maleCount +", total_female"+ femaleCount +"}";
     }
 

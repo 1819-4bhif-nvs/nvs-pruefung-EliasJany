@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class SurnameEndpoint {
     EntityManager em;
 
     @Path("surname")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
     public String surname()
     {
         int peopleCount = 0;
@@ -33,10 +35,11 @@ public class SurnameEndpoint {
                 femaleCount++;
         }
 
-        return "total_all : "+ peopleCount+", total_male"+ maleCount +", total_female"+ femaleCount;
+        return "{ total_all: "+ peopleCount+", total_male: "+ maleCount +", total_female: "+ femaleCount+" }";
     }
 
-    @Path("histogramm")
+    @Path("surname/histogramm")
+    @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response histogramm(){
         return null;
